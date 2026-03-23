@@ -1,0 +1,103 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTP Explorer - Toshiba 4690 (TCxSky)</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="title">FTP Explorer</div>
+        <div class="connection-info" id="connection-status">No conectado</div>
+    </header>
+
+    <div class="explorer-container">
+        <!-- Árbol de directorios -->
+        <div class="sidebar" id="sidebar-tree">
+            <!-- Diskos y arbol se renderiza aca -->
+        </div>
+
+        <!-- Panel Principal -->
+        <div class="main-panel" id="main-panel">
+            <div class="dropzone-overlay">Suelta archivos para subir a esta carpeta</div>
+            
+            <div class="actions-bar">
+                <div class="path-breadcrumb" id="current-path">/</div>
+                <button class="btn btn-secondary" onclick="app.refreshCurrentFolder()">Refrescar</button>
+                <button class="btn btn-primary" onclick="app.triggerUploadModal()">Subir Archivos</button>
+                <button class="btn btn-primary" onclick="app.downloadCurrentFolder()">Descargar Carpeta (.zip)</button>
+            </div>
+
+            <table class="file-table" id="file-table">
+                <thead>
+                    <tr>
+                        <th width="50%">Nombre</th>
+                        <th width="30%">Tipo</th>
+                        <th width="20%" style="text-align: right;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="file-list">
+                    <!-- Vista por defecto -->
+                    <tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 30px;">Selecciona una carpeta en el panel izquierdo</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal Login -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Conectar a Servidor Toshiba</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>IP del Servidor (Host)</label>
+                    <input type="text" id="ftp-host" required value="192.168.0.100">
+                </div>
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" id="ftp-user" required value="USER">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="ftp-pass">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Conectar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Upload -->
+    <div id="upload-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Subir Archivos</h2>
+            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Destino: <span id="upload-dest-path"></span></p>
+            <input type="file" id="file-input" multiple style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button class="btn btn-secondary" onclick="app.hideUploadModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="app.uploadFiles()">Subir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editor de Texto -->
+    <div id="editor-modal" class="modal-overlay hidden">
+        <div class="modal-content large">
+            <h2 id="editor-title">Editando: ...</h2>
+            <div class="editor-container">
+                <textarea id="file-editor" spellcheck="false"></textarea>
+            </div>
+            <div class="editor-actions">
+                <button class="btn btn-secondary" onclick="app.closeEditor()">Cancelar</button>
+                <button class="btn btn-primary" onclick="app.saveCurrentFile()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toasts Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/static/js/explorer.js"></script>
+</body>
+</html>
