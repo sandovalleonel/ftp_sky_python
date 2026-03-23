@@ -106,6 +106,23 @@ class AppExplorer {
         }
     }
 
+    logout() {
+        sessionStorage.clear();
+        this.expandedFolders.clear();
+        this.saveExpandedState();
+        this.host = '';
+        this.user = '';
+        this.pass = '';
+        this.currentPath = '';
+        
+        document.getElementById('connection-status').innerText = 'No conectado';
+        document.getElementById('file-list').innerHTML = '';
+        document.getElementById('current-path').innerText = '';
+        document.getElementById('sidebar-tree').innerHTML = '';
+        
+        document.getElementById('login-modal').classList.remove('hidden');
+    }
+
     async loadInitialDisks() {
         try {
             const data = await this.doApiCall('connect', {host: this.host, user: this.user, password: this.pass});
