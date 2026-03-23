@@ -252,10 +252,10 @@ class AppExplorer {
                     </td>
                     <td>${item.is_dir ? 'Carpeta' : 'Archivo'}</td>
                     <td class="actions">
-                        ${!item.is_dir ? `<button class="action-btn" onclick="app.downloadFile('${item.path}')">Descargar</button>` : ''}
-                        ${isEditable ? `<button class="action-btn" onclick="app.openViewer('${item.path}', '${item.name}')">Ver</button>` : ''}
-                        ${isEditable ? `<button class="action-btn" onclick="app.openEditor('${item.path}', '${item.name}')">Editar</button>` : ''}
-                        <button class="action-btn" onclick="app.deleteItem('${item.path}', ${item.is_dir})">Eliminar</button>
+                        ${!item.is_dir ? `<button class="action-btn" title="Descargar" onclick="app.downloadFile('${item.path}')"><span class="icon icon-download"></span></button>` : ''}
+                        ${isEditable ? `<button class="action-btn" title="Ver" onclick="app.openViewer('${item.path}', '${item.name}')"><span class="icon icon-view"></span></button>` : ''}
+                        ${isEditable ? `<button class="action-btn" title="Editar" onclick="app.openEditor('${item.path}', '${item.name}')"><span class="icon icon-edit"></span></button>` : ''}
+                        <button class="action-btn" title="Eliminar" onclick="app.deleteItem('${item.path}', ${item.is_dir})"><span class="icon icon-delete"></span></button>
                     </td>
                 `;
                 

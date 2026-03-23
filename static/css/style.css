@@ -54,6 +54,18 @@ body {
 .icon-collapsed {
   background-image: url('data:image/svg+xml;utf8,<svg fill="%239e9e9e" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 17l5-5-5-5z"/></svg>');
 }
+.icon-view {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%234dabf7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>');
+}
+.icon-edit {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%2369db7c" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>');
+}
+.icon-download {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%234dabf7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>');
+}
+.icon-delete {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff8787" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>');
+}
 
 /* Modals */
 .modal-overlay {
@@ -180,8 +192,9 @@ header {
 .file-table th { color: var(--text-muted); font-weight: normal; }
 .file-table tr:hover td { background: var(--hover-bg); cursor: pointer; }
 .file-table td.actions { text-align: right; }
-.action-btn { background: none; border: none; color: var(--accent); cursor: pointer; margin-left: 10px; font-size: 0.85rem; }
-.action-btn:hover { text-decoration: underline; }
+.action-btn { background: none; border: none; cursor: pointer; margin-left: 10px; display: inline-flex; align-items: center; justify-content: center; padding: 4px; border-radius: 4px; transition: background 0.2s; }
+.action-btn:hover { background: var(--hover-bg); }
+.action-btn .icon { margin-right: 0; width: 18px; height: 18px; }
 
 /* Toast Notifications */
 .toast-container {
