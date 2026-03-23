@@ -84,13 +84,13 @@
     <!-- Modal Editor de Texto -->
     <div id="editor-modal" class="modal-overlay hidden">
         <div class="modal-content large">
-            <h2 id="editor-title">Editando: ...</h2>
+            <h2 id="editor-title">Editor / Visor</h2>
             <div class="editor-container">
                 <textarea id="file-editor" spellcheck="false"></textarea>
             </div>
             <div class="editor-actions">
-                <button class="btn btn-secondary" onclick="app.closeEditor()">Cancelar</button>
-                <button class="btn btn-primary" onclick="app.saveCurrentFile()">Guardar Cambios</button>
+                <button class="btn btn-secondary" onclick="app.closeEditor()">Cerrar</button>
+                <button id="save-btn" class="btn btn-primary" onclick="app.saveCurrentFile()">Guardar Cambios</button>
             </div>
         </div>
     </div>

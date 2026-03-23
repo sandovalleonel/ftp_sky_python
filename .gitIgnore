@@ -1,0 +1,4 @@
+ftp_debug.log
+*.log
+*.pyc
+.env

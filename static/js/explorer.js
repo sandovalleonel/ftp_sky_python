@@ -253,6 +253,7 @@ class AppExplorer {
                     <td>${item.is_dir ? 'Carpeta' : 'Archivo'}</td>
                     <td class="actions">
                         ${!item.is_dir ? `<button class="action-btn" onclick="app.downloadFile('${item.path}')">Descargar</button>` : ''}
+                        ${isEditable ? `<button class="action-btn" onclick="app.openViewer('${item.path}', '${item.name}')">Ver</button>` : ''}
                         ${isEditable ? `<button class="action-btn" onclick="app.openEditor('${item.path}', '${item.name}')">Editar</button>` : ''}
                         <button class="action-btn" onclick="app.deleteItem('${item.path}', ${item.is_dir})">Eliminar</button>
                     </td>
@@ -261,7 +262,7 @@ class AppExplorer {
                 if (item.is_dir) {
                     tr.addEventListener('dblclick', () => this.loadFileList(item.path));
                 } else if(isEditable) {
-                    tr.addEventListener('dblclick', () => this.openEditor(item.path, item.name));
+                    tr.addEventListener('dblclick', () => this.openViewer(item.path, item.name));
                 }
                 
                 tbody.appendChild(tr);
@@ -341,12 +342,18 @@ class AppExplorer {
         } catch(e) { }
     }
 
-    // --- Editor ---
-    async openEditor(path, name) {
+    // --- Viewer & Editor ---
+    async openFile(path, name, readOnly = false) {
         this.currentEditingFile = path;
-        document.getElementById('editor-title').innerText = `Editando: ${name}`;
+        document.getElementById('editor-title').innerText = `${readOnly ? 'Viendo' : 'Editando'}: ${name}`;
+        
         const editor = document.getElementById('file-editor');
         editor.value = 'Cargando archivo, por favor espere...';
+        editor.readOnly = readOnly;
+        
+        const saveBtn = document.getElementById('save-btn');
+        if (saveBtn) saveBtn.style.display = readOnly ? 'none' : 'inline-block';
+        
         document.getElementById('editor-modal').classList.remove('hidden');
 
         try {
@@ -355,6 +362,14 @@ class AppExplorer {
         } catch(e) {
             editor.value = `Error: ${e.message}`;
         }
+    }
+
+    openEditor(path, name) {
+        this.openFile(path, name, false);
+    }
+    
+    openViewer(path, name) {
+        this.openFile(path, name, true);
     }
 
     closeEditor() {
