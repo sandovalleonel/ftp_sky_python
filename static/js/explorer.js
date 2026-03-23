@@ -1,4 +1,4 @@
-const EDITABLE_EXTENSIONS = ['.bat', '.txt', '.bk', '.tmp', '.xml', '.ini', '.cfg'];
+const NON_EDITABLE_EXTENSIONS = ['.zip', '.tar', '.rar', '.gz', '.7z', '.jpeg', '.jpg', '.png', '.gif', '.exe', '.dll', '.jar', '.class', '.so', '.pdf', '.mp3', '.mp4', '.iso', '.bin', '.obj'];
 
 class AppExplorer {
     constructor() {
@@ -243,7 +243,7 @@ class AppExplorer {
 
             allItems.forEach(item => {
                 const tr = document.createElement('tr');
-                const isEditable = !item.is_dir && EDITABLE_EXTENSIONS.some(ext => item.name.toLowerCase().endsWith(ext));
+                const isEditable = !item.is_dir && !NON_EDITABLE_EXTENSIONS.some(ext => item.name.toLowerCase().endsWith(ext));
                 
                 tr.innerHTML = `
                     <td>
