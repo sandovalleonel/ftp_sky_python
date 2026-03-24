@@ -201,8 +201,19 @@ class AppExplorer {
                  this.toggleFolder(childrenContainer, path, toggle, true);
             }
         } else {
-            // Es archivo, no esta en el tree usualmente, pero si estuviera
-            header.addEventListener('click', () => { /* Handle file click if needed */ });
+            // Es archivo: Agregar click listener para abrir visor
+            header.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('selected'));
+                header.classList.add('selected');
+                
+                const isEditable = !NON_EDITABLE_EXTENSIONS.some(ext => name.toLowerCase().endsWith(ext));
+                if (isEditable) {
+                    this.openViewer(path, name);
+                } else {
+                    this.showToast('Tipo de archivo no soportado para previsualización', 'error');
+                }
+            });
         }
 
         return wrapper;
@@ -236,11 +247,14 @@ class AppExplorer {
             container.innerHTML = '';
             
             const dirs = data.items.filter(i => i.is_dir).sort((a,b) => a.name.localeCompare(b.name));
-            if(dirs.length === 0) {
+            const files = data.items.filter(i => !i.is_dir).sort((a,b) => a.name.localeCompare(b.name));
+            const allItems = [...dirs, ...files];
+
+            if(allItems.length === 0) {
                 container.innerHTML = '<div class="empty-folder">Carpeta vacía</div>';
             } else {
-                dirs.forEach(d => {
-                    container.appendChild(this.createTreeNode(d.name, d.path, true));
+                allItems.forEach(item => {
+                    container.appendChild(this.createTreeNode(item.name, item.path, item.is_dir));
                 });
             }
         } catch(e) {
