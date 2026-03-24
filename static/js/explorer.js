@@ -210,7 +210,13 @@ class AppExplorer {
             childrenContainer.className = 'tree-children';
             wrapper.appendChild(childrenContainer);
 
-            // Click listener for expansion & loading
+            // Click listener exclusively for the toggle arrow
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevenir que el click active el header
+                this.toggleFolder(childrenContainer, path, toggle);
+            });
+
+            // Click listener for the header text/icon
             header.addEventListener('click', (e) => {
                 // Prevenir que un click en un hijo expanda al padre iterativamente
                 e.stopPropagation(); 
@@ -220,8 +226,10 @@ class AppExplorer {
                 
                 this.loadFileList(path);
                 
-                // Si el click fue justo en el iconito de expandir, o si queremos que todo el header expanda
-                this.toggleFolder(childrenContainer, path, toggle);
+                // Si el nodo está cerrado, lo expandimos sistemáticamente, pero nunca lo cerramos acá
+                if (!childrenContainer.classList.contains('expanded')) {
+                    this.toggleFolder(childrenContainer, path, toggle);
+                }
             });
             
             // Auto expandir si estaba en el status
