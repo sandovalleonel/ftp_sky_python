@@ -98,6 +98,21 @@
         </div>
     </div>
 
+    <!-- Modal Renombrar -->
+    <div id="rename-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Renombrar</h2>
+            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Elemento: <span id="rename-old-name-display"></span></p>
+            <div class="form-group">
+                <input type="text" id="rename-new-name" required onkeydown="if(event.key === 'Enter') app.confirmRename()">
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button class="btn btn-secondary" onclick="app.hideRenameModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="app.confirmRename()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Toasts Notifications -->
     <div id="toast-container" class="toast-container"></div>
 

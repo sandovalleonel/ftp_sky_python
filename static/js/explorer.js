@@ -272,6 +272,7 @@ class AppExplorer {
                         ${!item.is_dir ? `<button class="action-btn" title="Descargar" onclick="app.downloadFile('${item.path}')"><span class="icon icon-download"></span></button>` : ''}
                         ${isEditable ? `<button class="action-btn" title="Ver" onclick="app.openViewer('${item.path}', '${item.name}')"><span class="icon icon-view"></span></button>` : ''}
                         ${isEditable ? `<button class="action-btn" title="Editar" onclick="app.openEditor('${item.path}', '${item.name}')"><span class="icon icon-edit"></span></button>` : ''}
+                        <button class="action-btn" title="Renombrar" onclick="app.triggerRenameModal('${item.path}', '${item.name}')"><span class="icon icon-rename"></span></button>
                         <button class="action-btn" title="Eliminar" onclick="app.deleteItem('${item.path}', ${item.is_dir})"><span class="icon icon-delete"></span></button>
                     </td>
                 `;
@@ -324,6 +325,61 @@ class AppExplorer {
             this.showToast('Eliminado correctamente', 'success');
             this.refreshCurrentFolder();
         } catch(e) { }
+    }
+
+    // --- Renaming ---
+    triggerRenameModal(path, currentName) {
+        this.currentRenamePath = path;
+        document.getElementById('rename-old-name-display').innerText = currentName;
+        const input = document.getElementById('rename-new-name');
+        input.value = currentName;
+        document.getElementById('rename-modal').classList.remove('hidden');
+        input.focus();
+        
+        // Select text before extension if it's a file
+        const lastDot = currentName.lastIndexOf('.');
+        if (lastDot > 0) {
+            input.setSelectionRange(0, lastDot);
+        } else {
+            input.select();
+        }
+    }
+
+    hideRenameModal() {
+        document.getElementById('rename-modal').classList.add('hidden');
+        this.currentRenamePath = null;
+    }
+
+    async confirmRename() {
+        if (!this.currentRenamePath) return;
+        
+        const newName = document.getElementById('rename-new-name').value.trim();
+        if (!newName) {
+            this.showToast('El nombre no puede estar vacío', 'error');
+            return;
+        }
+
+        // Calculate new path by replacing the last segment
+        const parts = this.currentRenamePath.split('/');
+        parts[parts.length - 1] = newName;
+        const newPath = parts.join('/');
+
+        if (this.currentRenamePath === newPath) {
+            this.hideRenameModal();
+            return;
+        }
+
+        try {
+            await this.doApiCall('rename', {
+                old_path: this.currentRenamePath,
+                new_path: newPath
+            });
+            this.showToast('Renombrado correctamente', 'success');
+            this.hideRenameModal();
+            this.refreshCurrentFolder();
+        } catch (e) {
+            // Error managed in doApiCall
+        }
     }
 
     // --- Uploading ---
