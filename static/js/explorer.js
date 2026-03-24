@@ -34,6 +34,16 @@ class AppExplorer {
                 this.showToast('Selecciona una carpeta destino primero', 'error');
             }
         });
+
+        // Editor scroll & input sync
+        const editor = document.getElementById('file-editor');
+        const lineNumbers = document.getElementById('line-numbers');
+        if (editor && lineNumbers) {
+            editor.addEventListener('input', () => this.updateLineNumbers());
+            editor.addEventListener('scroll', () => {
+                lineNumbers.scrollTop = editor.scrollTop;
+            });
+        }
     }
 
     // --- State Management ---
@@ -423,6 +433,7 @@ class AppExplorer {
         const editor = document.getElementById('file-editor');
         editor.value = 'Cargando archivo, por favor espere...';
         editor.readOnly = readOnly;
+        this.updateLineNumbers();
         
         const saveBtn = document.getElementById('save-btn');
         if (saveBtn) saveBtn.style.display = readOnly ? 'none' : 'inline-block';
@@ -432,8 +443,10 @@ class AppExplorer {
         try {
             const data = await this.doApiCall('read', {path});
             editor.value = data.content;
+            this.updateLineNumbers();
         } catch(e) {
             editor.value = `Error: ${e.message}`;
+            this.updateLineNumbers();
         }
     }
 
@@ -448,6 +461,18 @@ class AppExplorer {
     closeEditor() {
         document.getElementById('editor-modal').classList.add('hidden');
         this.currentEditingFile = '';
+    }
+
+    updateLineNumbers() {
+        const editor = document.getElementById('file-editor');
+        const lineNumbers = document.getElementById('line-numbers');
+        if (!editor || !lineNumbers) return;
+        
+        const linesCount = editor.value.split('\n').length;
+        if (this.lastLinesCount !== linesCount) {
+            lineNumbers.innerHTML = Array(linesCount).fill(0).map((_, i) => `<div>${i + 1}</div>`).join('');
+            this.lastLinesCount = linesCount;
+        }
     }
 
     async saveCurrentFile() {
