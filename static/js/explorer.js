@@ -399,6 +399,7 @@ class AppExplorer {
         document.getElementById('file-input').value = '';
         document.getElementById('upload-modal').classList.remove('hidden');
     }
+
     hideUploadModal() {
         document.getElementById('upload-modal').classList.add('hidden');
     }
@@ -421,6 +422,46 @@ class AppExplorer {
         try {
             await this.doApiCall('upload', fd);
             this.showToast('Archivos subidos con éxito', 'success');
+            this.refreshCurrentFolder();
+        } catch(e) { }
+    }
+
+    // --- Create Folder / File ---
+    triggerCreateModal() {
+        if(!this.currentPath) return this.showToast('Selecciona una carpeta destino primero', 'error');
+        document.getElementById('create-dest-display').innerText = this.currentPath;
+        document.getElementById('create-item-name').value = '';
+        document.querySelector('input[name="create-type"][value="file"]').checked = true;
+        document.getElementById('create-modal').classList.remove('hidden');
+        document.getElementById('create-item-name').focus();
+    }
+
+    hideCreateModal() {
+        document.getElementById('create-modal').classList.add('hidden');
+    }
+
+    async confirmCreate() {
+        if(!this.currentPath) return;
+
+        const name = document.getElementById('create-item-name').value.trim();
+        if(!name) {
+            this.showToast('El nombre no puede estar vacío', 'error');
+            return;
+        }
+
+        const type = document.querySelector('input[name="create-type"]:checked').value;
+        const targetPath = `${this.currentPath}/${name}`;
+
+        try {
+            if(type === 'folder') {
+                await this.doApiCall('create_folder', { path: targetPath });
+                this.showToast('Carpeta creada exitosamente', 'success');
+            } else {
+                // Se usa el endpoint de save para crear un archivo vacío
+                await this.doApiCall('save', { path: targetPath, content: '' });
+                this.showToast('Archivo creado exitosamente', 'success');
+            }
+            this.hideCreateModal();
             this.refreshCurrentFolder();
         } catch(e) { }
     }

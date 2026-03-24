@@ -1,17 +1,20 @@
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FTP Explorer - Toshiba 4690 (TCxSky)</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
 
     <header>
         <div class="title">FTP Explorer</div>
         <div style="display: flex; align-items: center;">
             <div class="connection-info" id="connection-status">No conectado</div>
-            <button class="btn btn-secondary" style="padding: 4px 8px; margin-left: 15px; font-size: 0.8rem;" onclick="app.logout()">Cerrar sesión</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; margin-left: 15px; font-size: 0.8rem;"
+                onclick="app.logout()">Cerrar sesión</button>
         </div>
     </header>
 
@@ -24,10 +27,11 @@
         <!-- Panel Principal -->
         <div class="main-panel" id="main-panel">
             <div class="dropzone-overlay">Suelta archivos para subir a esta carpeta</div>
-            
+
             <div class="actions-bar">
                 <div class="path-breadcrumb" id="current-path">/</div>
                 <button class="btn btn-secondary" onclick="app.refreshCurrentFolder()">Refrescar</button>
+                <button class="btn btn-primary" onclick="app.triggerCreateModal()">Nuevo Elemento</button>
                 <button class="btn btn-primary" onclick="app.triggerUploadModal()">Subir Archivos</button>
                 <button class="btn btn-primary" onclick="app.downloadCurrentFolder()">Descargar Carpeta (.zip)</button>
             </div>
@@ -42,7 +46,10 @@
                 </thead>
                 <tbody id="file-list">
                     <!-- Vista por defecto -->
-                    <tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 30px;">Selecciona una carpeta en el panel izquierdo</td></tr>
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: var(--text-muted); padding: 30px;">Selecciona
+                            una carpeta en el panel izquierdo</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -75,7 +82,8 @@
     <div id="upload-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h2>Subir Archivos</h2>
-            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Destino: <span id="upload-dest-path"></span></p>
+            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Destino: <span
+                    id="upload-dest-path"></span></p>
             <input type="file" id="file-input" multiple style="margin-bottom: 20px;">
             <div style="display: flex; justify-content: flex-end; gap: 10px;">
                 <button class="btn btn-secondary" onclick="app.hideUploadModal()">Cancelar</button>
@@ -103,13 +111,40 @@
     <div id="rename-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h2>Renombrar</h2>
-            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Elemento: <span id="rename-old-name-display"></span></p>
+            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Elemento: <span
+                    id="rename-old-name-display"></span></p>
             <div class="form-group">
-                <input type="text" id="rename-new-name" required onkeydown="if(event.key === 'Enter') app.confirmRename()">
+                <input type="text" id="rename-new-name" required
+                    onkeydown="if(event.key === 'Enter') app.confirmRename()">
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px;">
                 <button class="btn btn-secondary" onclick="app.hideRenameModal()">Cancelar</button>
                 <button class="btn btn-primary" onclick="app.confirmRename()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Elemento -->
+    <div id="create-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Crear Nuevo Elemento</h2>
+            <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Destino: <span
+                    id="create-dest-display"></span></p>
+            <div class="form-group" style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="radio" name="create-type" value="folder"> Carpeta
+                </label>
+                <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="radio" name="create-type" value="file" checked> Archivo
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="create-item-name" placeholder="Nombre (puede no tener extensión)" required
+                    onkeydown="if(event.key === 'Enter') app.confirmCreate()">
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button class="btn btn-secondary" onclick="app.hideCreateModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="app.confirmCreate()">Crear</button>
             </div>
         </div>
     </div>
@@ -119,4 +154,5 @@
 
     <script src="/static/js/explorer.js"></script>
 </body>
+
 </html>

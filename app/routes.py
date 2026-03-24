@@ -144,3 +144,14 @@ def api_rename():
         return jsonify({"status": "success"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 400
+
+@app.route('/api/create_folder', methods=['POST'])
+def api_create_folder():
+    try:
+        path = request.json.get('path')
+        ftp = get_ftp()
+        ftp.make_dir(path)
+        ftp.disconnect()
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400

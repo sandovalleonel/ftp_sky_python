@@ -176,6 +176,10 @@ class FTPManager:
         """Renombra."""
         self.ftp.rename(old_path, new_path)
         
+    def make_dir(self, remote_path):
+        """Crea un nuevo directorio."""
+        self.ftp.mkd(remote_path)
+        
     def download_folder_zip(self, folder_path):
         """Descarga una carpeta completa y la comprime en ZIP dinámicamente."""
         memory_zip = io.BytesIO()
