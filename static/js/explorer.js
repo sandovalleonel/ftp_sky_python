@@ -80,10 +80,10 @@ class AppExplorer {
     }
 
     checkExistingLogin() {
-        const h = sessionStorage.getItem('ftpHost');
-        const u = sessionStorage.getItem('ftpUser');
+        const h = localStorage.getItem('ftpHost');
+        const u = localStorage.getItem('ftpUser');
         if(h && u) {
-            this.host = h; this.user = u; this.pass = sessionStorage.getItem('ftpPass') || '';
+            this.host = h; this.user = u; this.pass = localStorage.getItem('ftpPass') || '';
             document.getElementById('login-modal').classList.add('hidden');
             this.loadInitialDisks();
         }
@@ -127,9 +127,9 @@ class AppExplorer {
 
         try {
             const data = await this.doApiCall('connect', {host: this.host, user: this.user, password: this.pass});
-            sessionStorage.setItem('ftpHost', this.host);
-            sessionStorage.setItem('ftpUser', this.user);
-            sessionStorage.setItem('ftpPass', this.pass);
+            localStorage.setItem('ftpHost', this.host);
+            localStorage.setItem('ftpUser', this.user);
+            localStorage.setItem('ftpPass', this.pass);
             
             document.getElementById('connection-status').innerText = `Conectado a ${this.user}@${this.host}`;
             document.getElementById('login-modal').classList.add('hidden');
@@ -145,7 +145,9 @@ class AppExplorer {
     }
 
     logout() {
-        sessionStorage.clear();
+        localStorage.removeItem('ftpHost');
+        localStorage.removeItem('ftpUser');
+        localStorage.removeItem('ftpPass');
         this.expandedFolders.clear();
         this.saveExpandedState();
         this.host = '';
