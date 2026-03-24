@@ -21,17 +21,45 @@ class AppExplorer {
             this.connect();
         });
 
+        // Prevent default browser behavior globally to stop files from opening in the window
+        window.addEventListener('dragover', e => e.preventDefault());
+        window.addEventListener('drop', e => e.preventDefault());
+
         // Drag and drop events en el main-panel
         const panel = document.getElementById('main-panel');
-        panel.addEventListener('dragover', (e) => { e.preventDefault(); panel.classList.add('dragover'); });
-        panel.addEventListener('dragleave', (e) => { e.preventDefault(); panel.classList.remove('dragover'); });
+        let dragCounter = 0;
+
+        panel.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            dragCounter++;
+            panel.classList.add('dragover');
+        });
+        
+        panel.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            // It's required to preventDefault on dragover for 'drop' to fire on elements
+        });
+        
+        panel.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dragCounter--;
+            if (dragCounter === 0) {
+                panel.classList.remove('dragover');
+            }
+        });
+        
         panel.addEventListener('drop', (e) => {
             e.preventDefault();
+            dragCounter = 0;
             panel.classList.remove('dragover');
-            if(this.currentPath) {
-                this.handleDropFiles(e.dataTransfer.files);
-            } else {
-                this.showToast('Selecciona una carpeta destino primero', 'error');
+            
+            // Si el drop target no tiene archivos (ej. arrastró texto normal), lo ignoramos
+            if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                if(this.currentPath) {
+                    this.handleDropFiles(e.dataTransfer.files);
+                } else {
+                    this.showToast('Selecciona una carpeta destino primero', 'error');
+                }
             }
         });
 
