@@ -72,6 +72,27 @@ class AppExplorer {
                 lineNumbers.scrollTop = editor.scrollTop;
             });
         }
+
+        // Cierre de modales interactivos con Escape o clic fuera del contenido
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (!document.getElementById('editor-modal').classList.contains('hidden')) this.closeEditor();
+                else if (!document.getElementById('upload-modal').classList.contains('hidden')) this.hideUploadModal();
+                else if (!document.getElementById('rename-modal').classList.contains('hidden')) this.hideRenameModal();
+                else if (!document.getElementById('create-modal').classList.contains('hidden')) this.hideCreateModal();
+            }
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('mousedown', (e) => {
+                if (e.target === modal) {
+                    if (modal.id === 'editor-modal') this.closeEditor();
+                    else if (modal.id === 'upload-modal') this.hideUploadModal();
+                    else if (modal.id === 'rename-modal') this.hideRenameModal();
+                    else if (modal.id === 'create-modal') this.hideCreateModal();
+                }
+            });
+        });
     }
 
     // --- State Management ---

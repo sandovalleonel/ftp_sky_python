@@ -16348,3 +16348,559 @@ OUTPUT DE LIST:
 [RECHAZADA X REGEX]:               4096           DIR 03-24-2026   10:32  .
 [RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
 -> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: C:/ADX_SBUN ---
+OUTPUT DE LIST:
+                 0           DIR 03-18-2026   09:02  .
+                 0           DIR 03-18-2026   09:02  ..
+             21388      A        02-27-2013   09:41  JAVAAPP.XML
+          4294966784 bytes free
+[RECHAZADA X REGEX]:                  0           DIR 03-18-2026   09:02  .
+[RECHAZADA X REGEX]:                  0           DIR 03-18-2026   09:02  ..
+[RECHAZADA X REGEX]:           4294966784 bytes free
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/ ---
+OUTPUT DE LIST:
+             12288           DIR 03-22-2026   22:42  .
+              4096           DIR 03-18-2026   08:52  ..
+             22993               04-06-2023   16:05  icecream.gif
+              4096           DIR 03-23-2026   10:57  simon-ui
+              4096           DIR 03-18-2026   09:22  data
+               147               04-06-2023   16:05  nrf1b.htm
+              5536               09-28-2020   21:06  LBII-Log.jar
+             99220               07-03-2018   19:36  tss.jar
+           1049813               10-03-2023   17:03  CERR.log.1
+            108875               02-05-2021   11:07  TefFastTrack.jar
+               243               04-06-2023   16:05  SNO14.HTM
+              6379               02-05-2021   11:07  tef.fun
+               145               04-06-2023   16:05  nrfprmo2.htm
+            103773               09-29-2022   11:57  TefFavV8.jar
+         119016168               03-17-2026   12:16  rhlog
+              4096           DIR 03-18-2026   09:22  SXTRXPAF
+             36521               02-15-2021   12:10  r
+            169149               08-25-2008   10:51  mx4j_rmt.jar
+              1726               11-23-2020   23:35  dd.pro
+               146               04-06-2023   16:05  nrf1.htm
+           1048586               10-04-2023   18:16  CPL.log.7
+               335               06-10-2004   08:07  svibm.jar
+              1873               09-28-2020   21:05  rubp.jar
+            255008               09-28-2020   21:04  cpl_l.jar
+            832503               07-26-2012   02:30  ibmjceprovider.jar
+                 4               01-10-2020   00:39  oemjpos.cfg
+              4096           DIR 03-18-2026   17:47  adxetc
+              8364               11-10-2020   00:46  CERR005.log
+            425426               12-12-2020   01:28  os4690.zip
+              4488               09-28-2020   21:06  LBII-RunTime.jar
+             46725               09-28-2020   21:05  commons-codec-1.3.jar
+               335               08-25-2008   10:55  sibusp.jar
+            102224               09-26-2020   19:04  TefFavV6.jar
+           2577658               11-02-2020   11:24  EAMTSGIL.286
+              2779               10-04-2023   18:26  AEFEXTLG.TXT
+            227180               10-19-2019   03:31  svusrlds.jar
+              4096           DIR 03-18-2026   09:23  tomcat
+               246               03-01-2020   10:33  SNO1.BAK
+            137866               11-21-2016   18:05  soxs.jar
+             27528               04-06-2023   16:05  produce1.gif
+               143               04-06-2023   16:05  welc1b.htm
+            242941               11-28-2000   14:24  jpos14.jar
+              2142               10-16-2014   13:45  jpos6.prp
+              4656               11-23-2020   23:35  svlogdbg.pro
+            590740               11-28-2000   14:24  ibmjpos.jar
+             23617               04-06-2023   16:05  berries1.gif
+             49597               07-20-2018   15:28  comm4690.jar
+             31739               01-27-2020   14:14  CajaPosV8.ori
+            394969               02-05-2021   11:07  segcajaV8.jar
+            105107               04-20-2023   14:36  TefFavV8.new
+               145               04-06-2023   16:05  tender.htm
+             14178               03-23-2026   12:40  pafacti.txt
+             81353               08-28-2023   17:46  CajaPosV8.jar
+              4445               04-06-2023   16:05  nrfwelcm.gif
+              4096           DIR 03-18-2026   09:22  derby
+              3213               09-28-2020   21:04  AEFExtension.jar
+               243               04-06-2023   16:05  SNO2.HTM
+            198812               09-28-2020   21:05  axiom-api-1.2.7.jar
+           7375127               05-01-2020   21:57  silver.jar
+              3073               11-28-2000   14:16  adxkeyjp.dat
+          17646776               06-12-2021   09:14  ALLC.zip
+            384428               09-26-2020   19:04  segcaja.v2
+              4096           DIR 03-18-2026   09:22  ARTURO
+               243               04-06-2023   16:05  SNO3.HTM
+               335               08-25-2008   10:55  siuser.jar
+              4096           DIR 03-18-2026   09:22  WSDEPOS
+              6697               01-06-2020   06:55  gztef.ori
+             60686               09-28-2020   21:05  commons-logging-1.1.1.jar
+              6385               09-26-2020   19:04  christef2.jar
+               144               04-06-2023   16:05  welcome.htm
+           1049236               10-04-2023   20:19  CPL.log.1
+               146               04-06-2023   16:05  tiread1.htm
+           1599570               09-28-2020   21:05  axis.jar
+             31605               06-10-2004   15:04  c_loging.jar
+                14               09-07-2019   05:45  ADXSUPTL.DAT
+           1049671               10-04-2023   18:46  CPL.log.5
+               243               04-06-2023   16:05  SNO9.HTM
+            394896               09-26-2020   19:04  segcajaV6.jar
+               987               11-28-2000   14:30  oemjpos.xml
+             71442               09-28-2020   21:05  commons-discovery-0.2.jar
+               335               06-10-2004   08:07  svbusp.jar
+               243               04-06-2023   16:05  SNO6.HTM
+              4096           DIR 03-18-2026   09:23  paff
+             99223               05-01-2020   21:48  css.jar
+             86490               04-06-2023   16:05  welcome.png
+             20480           DIR 03-24-2026   00:00  allc_pgm
+                 0               01-25-2020   00:08  VOUC.BAK
+              4057               09-28-2020   21:04  MensajesArticulo.jar
+           1221617               03-03-2020   16:32  simgmt.jar
+            108875               09-07-2019   21:47  TefFastTrack.cpl
+         132515840               03-13-2026   15:53  mbrowser_102.2.0.01.iso
+            425426               12-12-2020   01:29  OS4690.zip
+              1652               08-13-2020   14:12  AEFEXTCF.BAK
+            388864               09-28-2020   21:05  mail-1.4.jar
+             28804               09-28-2020   21:05  geronimo-stax-api_1.0_spec-1.0.1.jar
+            386739               04-06-2023   16:03  svuser.jar
+            223594               10-05-2020   17:26  jattach.jar
+             19427               09-28-2020   21:05  axis-saaj-1.2.1.jar
+             33310               09-28-2020   21:06  segcaja.jar
+           1048628               09-30-2023   12:29  CERR.log.3
+           1050585               10-04-2023   17:42  CPL.log.8
+             17938               04-06-2023   16:05  drp1.gif
+             28890               03-29-2021   08:42  caj.zip
+               147               04-06-2023   16:05  thanku.htm
+              4096           DIR 03-18-2026   17:48  adx_stld
+               247               04-06-2023   16:05  SNO1.HTM
+              3080               12-28-2020   13:54  CERR001.log
+             35605               09-28-2020   21:04  FastTrack.jar
+              4096           DIR 03-18-2026   09:22  POSJAVA
+              4436               11-23-2020   23:35  svlog.pro
+           1049941               10-04-2023   18:28  CPL.log.6
+            210392               05-01-2020   21:42  siutil.jar
+           1246675               05-01-2020   21:48  aefio.jar
+           1049834               10-01-2023   18:38  CERR.log.2
+           2220843               09-15-2023   10:45  aef.jar
+                 0               12-28-2020   14:21  CERR003.log
+              1658               08-13-2020   09:37  GUILLERMO.PRP
+               154               04-06-2023   16:05  nrfprmo1.htm
+              4096           DIR 03-24-2026   10:32  aagent
+              5916               11-23-2020   23:35  svlogmid.pro
+              1650               08-13-2020   14:13  aefextcf.ult
+           1050197               10-04-2023   17:05  CPL.log.9
+              4096           DIR 03-18-2026   09:22  CENEFAS
+            579096               10-04-2023   21:07  CPL.log
+              1657               01-15-2020   12:35  aefextcf.ant
+             15195               04-06-2023   16:05  thanku.png
+                 0               04-06-2023   16:05  SXCARGA.DAT
+              4897               04-06-2023   16:05  welc1b.gif
+              6378               09-26-2020   19:04  christef.jar
+            730730               10-04-2023   21:07  CERR.log
+             46681               09-26-2020   18:36  CERR009.log
+           1048635               10-04-2023   19:19  CPL.log.4
+              4096           DIR 03-18-2026   09:22  lib
+           2641503               02-23-2020   18:00  SVPRODUC.jar
+               145               04-06-2023   16:05  nrfprmo3.htm
+               147               04-06-2023   16:05  thanku1.htm
+               256               04-06-2023   16:05  SXIMAGEN.DAT
+              4096           DIR 03-23-2026   12:40  adx_spgm
+              1657               09-26-2020   19:05  AEFEXTCF.ADD
+            139889               09-28-2020   21:06  XmlSchema-1.4.2.jar
+               147               04-06-2023   16:05  mobilpay.htm
+              4096           DIR 03-18-2026   09:26  si
+           1049519               10-04-2023   19:35  CPL.log.3
+            367444               09-28-2020   21:05  log4j.jar
+               137               03-22-2026   22:42  android.htm
+          20281074               02-09-2020   19:29  launchpi12f.zip
+               335               08-25-2008   11:16  svstore.jar
+              4096           DIR 03-22-2026   17:43  paso
+            365810               09-28-2020   21:05  JDOM.JAR
+           7408566               02-07-2022   19:42  sky0302.zip
+               243               04-06-2023   16:05  SNO12.HTM
+              1576               01-06-2020   13:42  aefextcf.gui
+           1010675               11-21-2016   18:03  xercessi.jar
+               243               04-06-2023   16:05  SNO7.HTM
+               243               04-06-2023   16:05  SNO10.HTM
+             24497               02-02-2020   14:46  CajaPos.jar
+            394896               09-26-2020   19:04  segcajaV6.v6
+            106908               12-12-2020   01:29  poss4690.zip
+            148429               09-28-2020   21:06  wsdl4j-1.6.2.jar
+              4096           DIR 03-18-2026   09:22  LOG
+              4606               04-06-2023   16:05  welcome.gif
+            316862               12-12-2020   01:29  jpos4690.zip
+              1013               11-23-2020   23:35  jcst1.pro
+             31577               01-22-2020   14:05  CajaPosV6.ori
+           1049212               09-25-2023   20:34  CERR.log.5
+            331716               09-28-2020   21:05  backport-util-concurrent-3.1.jar
+            104257               02-05-2021   11:07  TefFavV8.fun
+               143               04-06-2023   16:05  drp1.htm
+               243               04-06-2023   16:05  SNO4.HTM
+               147               04-06-2023   16:05  icecream.htm
+              5510               09-28-2020   21:06  LBII-LoadLib.jar
+           2615636               09-28-2020   21:05  axis2-1.4.1.jar
+            223594               05-01-2020   21:48  sijiop.jar
+            110846               09-28-2020   21:06  rubt.jar
+          20346652               02-16-2022   20:38  allc112.zip
+           1049496               09-28-2023   13:47  CERR.log.4
+               487               10-05-2020   16:45  log.jar
+             28105               04-06-2023   16:05  nrfyear.gif
+            149442               09-28-2020   21:06  woden-api-1.0M8.jar
+            103883               11-21-2016   18:05  sibeep.jar
+             62983               09-28-2020   21:05  activation 1.1.jar
+             11396               12-14-2020   09:38  CERR004.log
+             32983               09-28-2020   21:05  neethi-2.0.4.jar
+               147               04-06-2023   16:05  produce1.htm
+            126935               09-28-2020   21:05  axiom-impl-1.2.7.jar
+              1325               01-15-2020   10:11  README.TXT
+              6332               04-06-2023   16:05  thanku1.gif
+            397028               08-25-2008   10:51  mx4j.jar
+              4096           DIR 03-23-2026   09:05  ALLC_DAT
+               335               08-25-2008   10:56  sistore.jar
+              6263               09-29-2022   11:57  tef.jar
+              1583               08-03-2020   13:38  aefextcf.fun
+            525476               09-28-2020   21:06  wstx-lgpl-3.2.3.jar
+           1049177               10-04-2023   16:28  CPL.log.10
+               335               08-25-2008   11:16  svcomp.jar
+               147               04-06-2023   16:05  berries1.htm
+              4685               04-06-2023   16:05  welc1a.gif
+            270222               06-12-2021   09:14  ALLC_DAT.zip
+             26514               09-28-2020   21:05  javax.xml.stream-1.0.1.jar
+              1429               09-30-2019   08:08  aefextcf.ori
+              4096           DIR 03-18-2026   09:23  rma
+           7759575               03-29-2022   12:54  sky15mar.zip
+         141262848               03-13-2026   15:53  mbrowser_115.4.0.06.iso
+             85039               04-06-2023   16:05  welcoma.png
+               243               04-06-2023   16:05  SNO11.HTM
+           4367726               05-01-2020   21:55  sureview.jar
+             39078               09-05-2008   07:55  mediapla.jar
+              4096           DIR 03-13-2026   14:45  pipeserv
+               243               04-06-2023   16:05  SNO13.HTM
+            242675               05-01-2020   21:48  sicompat.jar
+            394969               09-26-2020   19:04  segcajaV8.v8
+            340197               05-01-2020   21:52  aefsa.jar
+             71644               09-05-2008   07:55  customiz.jar
+               153               04-06-2023   16:05  cards.htm
+              4096           DIR 03-23-2026   14:29  dif
+             31191               09-28-2020   21:05  jaxrpc.jar
+            105743               01-26-2020   09:20  TefFavV8.ori
+              4096           DIR 03-18-2026   09:22  ALLC
+           1904171               09-05-2008   07:55  jmf.jar
+            103890               02-09-2020   07:49  TefFavV8.or2
+            539430               05-01-2020   21:56  svsa.jar
+            248926               01-28-2020   15:21  cpl_l.ori
+              1818               08-28-2023   17:46  aefextcf.prp
+             31739               01-27-2020   14:14  CajaPosV6.jar
+               243               04-06-2023   16:05  SNO5.HTM
+               143               04-06-2023   16:05  welc1a.htm
+             63515               09-05-2008   07:55  multipla.jar
+               243               04-06-2023   16:05  SNO8.HTM
+              1653               11-23-2020   23:35  j.pro
+           7905450               06-07-2024   09:22  allc_711.zip
+            305001               09-28-2020   21:05  commons-httpclient-3.1.jar
+              4096           DIR 02-02-2021   08:16  tmp
+           7366623               01-08-2022   17:52  skynuo.zip
+               335               08-25-2008   10:55  siibm.jar
+              4096           DIR 03-18-2026   09:22  launchpi
+             22241               04-06-2023   16:05  nrfyearb.gif
+             41012               05-01-2020   21:42  cmcompat.jar
+                 0               01-27-2020   00:07  VOUC.TXT
+           1048686               10-04-2023   19:56  CPL.log.2
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  .
+[RECHAZADA X REGEX]:               4096           DIR 03-18-2026   08:52  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   10:32  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   10:32  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   10:32  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   10:32  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   10:32  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   10:32  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:44  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          20661912               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:44  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:44  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          20689784               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:44  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:44  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:44  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:44  .
+             12288           DIR 03-22-2026   22:42  ..
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              1622               03-23-2026   12:22  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:44  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:48  .
+             12288           DIR 03-22-2026   22:42  ..
+              1622               03-23-2026   12:22  docker-compose.yml-valido23
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:48  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:48  .
+             12288           DIR 03-22-2026   22:42  ..
+              1622               03-23-2026   12:22  docker-compose.yml-valido23
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:48  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:48  .
+             12288           DIR 03-22-2026   22:42  ..
+              1622               03-23-2026   12:22  docker-compose.yml-valido23
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              2850               03-24-2026   11:48  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:48  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:48  .
+             12288           DIR 03-22-2026   22:42  ..
+              1622               03-23-2026   12:22  docker-compose.yml-valido23
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              2850               03-24-2026   11:48  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:48  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:51  .
+             12288           DIR 03-22-2026   22:42  ..
+              1622               03-23-2026   12:22  docker-compose.yml-valido23
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              2755               03-24-2026   11:51  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:51  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
+
+--- EXPLORANDO: F:/aagent ---
+OUTPUT DE LIST:
+              4096           DIR 03-20-2026   11:09  data
+          17675787               03-20-2026   11:07  ftp.jar
+              4096           DIR 03-23-2026   09:10  logs
+            273112               03-24-2026   10:32  glory-soapui-project.xml
+              4096           DIR 03-23-2026   09:00  bak
+               237               03-22-2026   22:14  mosquitto.conf
+               573               03-23-2026   08:49  log4jArmsAgentConf.properties
+              4096           DIR 03-24-2026   11:51  .
+             12288           DIR 03-22-2026   22:42  ..
+              1622               03-23-2026   12:22  docker-compose.yml-valido23
+                 0               03-24-2026   10:14  algo
+           3048028               03-23-2026   08:49  appAgent.jar
+              1302               03-24-2026   10:32  EAMTRANA.DAT
+          45429916               03-20-2026   11:13  simon-ui.zip
+              2059               03-23-2026   08:54  ArmsAgentConf.properties
+          54862848               03-24-2026   11:44  simon-base1.0.0.tar
+                28               03-22-2026   22:14  runftp.bat
+              2755               03-24-2026   11:51  docker-compose.yml
+[RECHAZADA X REGEX]:               4096           DIR 03-24-2026   11:51  .
+[RECHAZADA X REGEX]:              12288           DIR 03-22-2026   22:42  ..
+-> LIST PARSEADO CON EXITO, EVITANDO NLST.
