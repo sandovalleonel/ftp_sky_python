@@ -48,13 +48,21 @@ class AppExplorer {
             }
         });
         
-        panel.addEventListener('drop', (e) => {
+        panel.addEventListener('drop', async (e) => {
             e.preventDefault();
             dragCounter = 0;
             panel.classList.remove('dragover');
             
-            // Si el drop target no tiene archivos (ej. arrastró texto normal), lo ignoramos
-            if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            if(e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+                if(this.currentPath) {
+                    const files = await this.getFilesFromDataTransfer(e.dataTransfer.items);
+                    if(files.length > 0) {
+                        this.handleDropFiles(files);
+                    }
+                } else {
+                    this.showToast('Selecciona una carpeta destino primero', 'error');
+                }
+            } else if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
                 if(this.currentPath) {
                     this.handleDropFiles(e.dataTransfer.files);
                 } else {
@@ -108,6 +116,53 @@ class AppExplorer {
             document.getElementById('login-modal').classList.add('hidden');
             this.loadInitialDisks();
         }
+    }
+
+    async getFilesFromDataTransfer(items) {
+        let files = [];
+        let numPending = 0;
+        
+        return new Promise((resolve) => {
+            const checkDone = () => {
+                if (numPending === 0) resolve(files);
+            };
+            
+            const traverse = (entry, path = '') => {
+                if (entry.isFile) {
+                    numPending++;
+                    entry.file(file => {
+                        file.customPath = path + file.name;
+                        files.push(file);
+                        numPending--;
+                        checkDone();
+                    });
+                } else if (entry.isDirectory) {
+                    numPending++;
+                    const reader = entry.createReader();
+                    const readEntries = () => {
+                        reader.readEntries(entries => {
+                            if (entries.length > 0) {
+                                entries.forEach(e => traverse(e, path + entry.name + '/'));
+                                readEntries();
+                            } else {
+                                numPending--;
+                                checkDone();
+                            }
+                        });
+                    };
+                    readEntries();
+                }
+            };
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                if (item.kind === 'file') {
+                    const entry = item.webkitGetAsEntry();
+                    if (entry) traverse(entry);
+                }
+            }
+            setTimeout(checkDone, 500);
+        });
     }
 
     async doApiCall(endpoint, payload = null, method = 'POST') {
@@ -392,12 +447,70 @@ class AppExplorer {
     }
 
     downloadFile(path, isDir=false) {
-        // Para descargas forzamos url via query params para que se bajen como adjuntos
+        this.downloadWithProgress(path, isDir);
+    }
+
+    async downloadWithProgress(path, isDir) {
         const qs = new URLSearchParams({
             path, is_dir: isDir, host: this.host, user: this.user, pass: this.pass
         });
-        window.location.href = `/api/download?${qs.toString()}`;
-        this.showToast('Descarga iniciada...');
+        const url = `/api/download?${qs.toString()}`;
+        
+        try {
+            this.showProgress(`Preparando descarga... (esto puede tomar varios segundos para carpetas)`);
+            const response = await fetch(url);
+            if(!response.ok) throw new Error("Error en la descarga u origen inaccesible");
+            
+            const contentLength = response.headers.get('content-length');
+            const total = contentLength ? parseInt(contentLength, 10) : 0;
+            
+            const reader = response.body.getReader();
+            let received = 0;
+            const chunks = [];
+            
+            while(true) {
+                const {done, value} = await reader.read();
+                if(done) break;
+                chunks.push(value);
+                received += value.length;
+                
+                if(total) {
+                    const percent = Math.round((received / total) * 100);
+                    this.updateProgress('Descargando...', percent);
+                } else {
+                    const mb = (received / (1024*1024)).toFixed(2);
+                    this.updateProgress('Descargando...', `${mb} MB`);
+                }
+            }
+            
+            this.updateProgress('Ensamblando...', 100);
+            const blob = new Blob(chunks);
+            const downloadUrl = window.URL.createObjectURL(blob);
+            
+            let filename = "descarga.bin";
+            const cd = response.headers.get('content-disposition');
+            if(cd && cd.indexOf('filename=') !== -1) {
+                filename = cd.split('filename=')[1].replace(/"/g, '');
+            } else {
+                const parts = path.split('/');
+                filename = parts[parts.length-1] || 'descarga';
+                if(isDir) filename += ".zip";
+            }
+            
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(downloadUrl);
+            this.hideProgress();
+            this.showToast('Descarga completada', 'success');
+            
+        } catch(e) {
+            this.hideProgress();
+            this.showToast(e.message, 'error');
+        }
     }
 
     async deleteItem(path, isDir) {
@@ -470,7 +583,24 @@ class AppExplorer {
         if(!this.currentPath) return this.showToast('Selecciona una carpeta destino primero', 'error');
         document.getElementById('upload-dest-path').innerText = this.currentPath;
         document.getElementById('file-input').value = '';
+        const radioFiles = document.querySelector('input[name="upload-type"][value="files"]');
+        if (radioFiles) radioFiles.checked = true;
+        this.toggleUploadType();
         document.getElementById('upload-modal').classList.remove('hidden');
+    }
+
+    toggleUploadType() {
+        const typeEl = document.querySelector('input[name="upload-type"]:checked');
+        if (!typeEl) return;
+        const type = typeEl.value;
+        const input = document.getElementById('file-input');
+        if(type === 'folder') {
+            input.setAttribute('webkitdirectory', '');
+            input.setAttribute('directory', '');
+        } else {
+            input.removeAttribute('webkitdirectory');
+            input.removeAttribute('directory');
+        }
     }
 
     hideUploadModal() {
@@ -480,23 +610,30 @@ class AppExplorer {
     async uploadFiles() {
         const input = document.getElementById('file-input');
         if(!input.files.length) return this.showToast('Selecciona un archivo', 'error');
-        await this.handleDropFiles(input.files);
         this.hideUploadModal();
+        
+        setTimeout(() => {
+            this.handleDropFiles(input.files);
+        }, 100);
     }
 
     async handleDropFiles(files) {
         if(!this.currentPath) return;
         
-        this.showToast(`Subiendo ${files.length} archivo(s)...`);
         const fd = new FormData();
         fd.append('path', this.currentPath);
-        for(let f of files) fd.append('file', f);
+        for(let f of files) {
+            fd.append('file', f);
+            fd.append('relative_paths', f.webkitRelativePath || f.customPath || f.name);
+        }
 
         try {
-            await this.doApiCall('upload', fd);
-            this.showToast('Archivos subidos con éxito', 'success');
+            await this.uploadWithProgress('upload', fd);
+            this.showToast('Subida exitosa', 'success');
             this.refreshCurrentFolder();
-        } catch(e) { }
+        } catch(e) { 
+            this.showToast(e.message, 'error');
+        }
     }
 
     // --- Create Folder / File ---
@@ -626,6 +763,71 @@ class AppExplorer {
         
         container.appendChild(toast);
         setTimeout(() => { if(toast.parentElement) toast.remove(); }, 4000);
+    }
+
+    // --- Progress UI ---
+    async uploadWithProgress(endpoint, fd) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `/api/${endpoint}`);
+            xhr.setRequestHeader('X-FTP-Host', this.host);
+            xhr.setRequestHeader('X-FTP-User', this.user);
+            xhr.setRequestHeader('X-FTP-Pass', this.pass);
+            
+            xhr.upload.onprogress = (e) => {
+                if (e.lengthComputable) {
+                    const percent = Math.round((e.loaded / e.total) * 100);
+                    this.updateProgress('Subiendo...', percent);
+                }
+            };
+            
+            xhr.onload = () => {
+                this.hideProgress();
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    if (data.status === 'error') reject(new Error(data.message));
+                    else resolve(data);
+                } catch(err) {
+                    reject(new Error('Error del servidor'));
+                }
+            };
+            
+            xhr.onerror = () => {
+                this.hideProgress();
+                reject(new Error('Error de red al subir'));
+            };
+            
+            this.showProgress('Iniciando subida...');
+            xhr.send(fd);
+        });
+    }
+
+    showProgress(text) {
+        const container = document.getElementById('progress-container');
+        if(!container) return;
+        container.classList.remove('hidden');
+        document.getElementById('progress-text').innerText = text;
+        document.getElementById('progress-percent').innerText = '0%';
+        document.getElementById('progress-bar-fill').style.width = '0%';
+    }
+
+    updateProgress(text, percent) {
+        const container = document.getElementById('progress-container');
+        if(!container) return;
+        document.getElementById('progress-text').innerText = text;
+        
+        if (typeof percent === 'number') {
+            document.getElementById('progress-percent').innerText = `${percent}%`;
+            document.getElementById('progress-bar-fill').style.width = `${percent}%`;
+        } else {
+            document.getElementById('progress-percent').innerText = percent;
+            document.getElementById('progress-bar-fill').style.width = '100%';
+        }
+    }
+
+    hideProgress() {
+        const container = document.getElementById('progress-container');
+        if(container) container.classList.add('hidden');
     }
 }
 

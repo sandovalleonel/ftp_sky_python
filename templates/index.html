@@ -81,9 +81,17 @@
     <!-- Modal Upload -->
     <div id="upload-modal" class="modal-overlay hidden">
         <div class="modal-content">
-            <h2>Subir Archivos</h2>
+            <h2>Subir</h2>
             <p style="margin-bottom: 10px; font-size: 0.9em; color: var(--text-muted);">Destino: <span
                     id="upload-dest-path"></span></p>
+            <div class="form-group" style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="radio" name="upload-type" value="files" checked onchange="app.toggleUploadType()"> Archivos
+                </label>
+                <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="radio" name="upload-type" value="folder" onchange="app.toggleUploadType()"> Carpeta
+                </label>
+            </div>
             <input type="file" id="file-input" multiple style="margin-bottom: 20px;">
             <div style="display: flex; justify-content: flex-end; gap: 10px;">
                 <button class="btn btn-secondary" onclick="app.hideUploadModal()">Cancelar</button>
@@ -152,7 +160,55 @@
     <!-- Toasts Notifications -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="/static/js/explorer.js"></script>
+    <!-- Progress Indicator -->
+    <style>
+        .progress-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .progress-container.hidden { display: none; }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #333;
+            font-weight: 500;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            transition: width 0.2s ease;
+        }
+    </style>
+    <div id="progress-container" class="progress-container hidden">
+        <div class="progress-info">
+            <span id="progress-text">Procesando...</span>
+            <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/explorer.js?v=4"></script>
 </body>
 
 </html>

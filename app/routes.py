@@ -110,11 +110,28 @@ def api_upload():
             return jsonify({"status": "error", "message": "No file part"}), 400
             
         files = request.files.getlist('file')
+        relative_paths = request.form.getlist('relative_paths')
         ftp = get_ftp()
+        created_dirs = set()
         
-        for file in files:
+        for i, file in enumerate(files):
             if file.filename != '':
-                target_path = f"{path.rstrip('/')}/{file.filename}"
+                rel_path = relative_paths[i] if i < len(relative_paths) and relative_paths[i] else file.filename
+                
+                parts = rel_path.replace('\\', '/').split('/')
+                if len(parts) > 1:
+                    dir_parts = parts[:-1]
+                    current_build_path = path.rstrip('/')
+                    for dp in dir_parts:
+                        current_build_path = f"{current_build_path}/{dp}"
+                        if current_build_path not in created_dirs:
+                            try:
+                                ftp.make_dir(current_build_path)
+                            except:
+                                pass
+                            created_dirs.add(current_build_path)
+                            
+                target_path = f"{path.rstrip('/')}/{rel_path}"
                 ftp.upload(file.stream, target_path)
                 
         ftp.disconnect()
