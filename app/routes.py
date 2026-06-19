@@ -141,13 +141,19 @@ def api_upload():
 
 @app.route('/api/delete', methods=['POST'])
 def api_delete():
+    log_file = os.path.join(os.path.dirname(__file__), '..', 'ftp_debug.log')
     try:
         path = request.json.get('path')
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"\n[ROUTE] Solicitud de borrado para: {path}\n")
+            
         ftp = get_ftp()
         ftp.delete(path)
         ftp.disconnect()
         return jsonify({"status": "success"})
     except Exception as e:
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[ROUTE] Error en borrado: {str(e)}\n")
         return jsonify({"status": "error", "message": str(e)}), 400
 
 @app.route('/api/rename', methods=['POST'])

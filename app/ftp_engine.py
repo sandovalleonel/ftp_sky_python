@@ -166,11 +166,72 @@ class FTPManager:
         return file_obj
 
     def delete(self, remote_path):
-        """Elimina archivo o directorio."""
+        """Elimina archivo o directorio de forma recursiva con logging detallado."""
+        log_file = os.path.join(os.path.dirname(__file__), '..', 'ftp_debug.log')
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"\n--- SOLICITUD DE BORRADO: {remote_path} ---\n")
+            
+            # Determinamos si es directorio intentando CWD
+            is_dir = False
+            try:
+                # El hack de SIZE es más rápido pero CWD es más seguro para confirmar carpeta
+                self.ftp.cwd(remote_path)
+                is_dir = True
+                f.write(f"-> Es un directorio (CWD exitoso)\n")
+                # Volvemos a la raíz o un nivel arriba no es fácil sin PWD, 
+                # pero list_dir hará su propio CWD.
+            except Exception as e:
+                is_dir = False
+                f.write(f"-> No es un directorio o no se puede acceder (CWD fallo): {e}\n")
+
+            if is_dir:
+                try:
+                    self._delete_recursive(remote_path, f)
+                    f.write(f"-> Borrado recursivo completado para {remote_path}\n")
+                except Exception as e:
+                    f.write(f"-> ERROR CRITICO en borrado recursivo: {e}\n")
+                    raise e
+            else:
+                try:
+                    f.write(f"-> Intentando DELE {remote_path}\n")
+                    self.ftp.delete(remote_path)
+                    f.write(f"-> DELE exitoso\n")
+                except Exception as e:
+                    f.write(f"-> DELE fallo: {e}\n")
+                    # Si DELE fallo, intentamos RMD por si acaso era una carpeta vacía que CWD no detectó
+                    try:
+                        f.write(f"-> Intentando RMD directo como fallback\n")
+                        self.ftp.rmd(remote_path)
+                        f.write(f"-> RMD exitoso\n")
+                    except:
+                        f.write(f"-> RMD fallback también falló\n")
+                        raise e
+
+    def _delete_recursive(self, remote_path, log_handle):
+        """Helper para navegar y borrar todo el contenido de una carpeta."""
+        log_handle.write(f"   [RECURSION] Explorando: {remote_path}\n")
+        items = self.list_dir(remote_path)
+        log_handle.write(f"   [RECURSION] {len(items)} elementos encontrados\n")
+        
+        for item in items:
+            if item['is_dir']:
+                self._delete_recursive(item['path'], log_handle)
+            else:
+                try:
+                    log_handle.write(f"   [RECURSION] Borrando archivo: {item['path']}\n")
+                    self.ftp.delete(item['path'])
+                except Exception as e:
+                    log_handle.write(f"   [RECURSION] Error borrando archivo {item['path']}: {e}\n")
+                    # No lanzamos excepción aquí para intentar borrar lo máximo posible
+        
+        # Finalmente eliminamos la carpeta que ya debería estar vacía
         try:
-            self.ftp.delete(remote_path)
-        except:
+            log_handle.write(f"   [RECURSION] Ejecutando RMD {remote_path}\n")
             self.ftp.rmd(remote_path)
+            log_handle.write(f"   [RECURSION] RMD exitoso\n")
+        except Exception as e:
+            log_handle.write(f"   [RECURSION] RMD falló en {remote_path}: {e}\n")
+            raise e
 
     def rename(self, old_path, new_path):
         """Renombra."""
