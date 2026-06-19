@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FTP Explorer - Toshiba 4690 (TCxSky)</title>
+    <title>FTP Explorer - Toshiba v24690 (TCxSky)</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
@@ -86,7 +86,8 @@
                     id="upload-dest-path"></span></p>
             <div class="form-group" style="display: flex; gap: 15px; margin-bottom: 15px;">
                 <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
-                    <input type="radio" name="upload-type" value="files" checked onchange="app.toggleUploadType()"> Archivos
+                    <input type="radio" name="upload-type" value="files" checked onchange="app.toggleUploadType()">
+                    Archivos
                 </label>
                 <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
                     <input type="radio" name="upload-type" value="folder" onchange="app.toggleUploadType()"> Carpeta
@@ -170,13 +171,17 @@
             background: #fff;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 10000;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        .progress-container.hidden { display: none; }
+
+        .progress-container.hidden {
+            display: none;
+        }
+
         .progress-info {
             display: flex;
             justify-content: space-between;
@@ -184,6 +189,7 @@
             color: #333;
             font-weight: 500;
         }
+
         .progress-bar-bg {
             width: 100%;
             height: 8px;
@@ -191,6 +197,7 @@
             border-radius: 4px;
             overflow: hidden;
         }
+
         .progress-bar-fill {
             height: 100%;
             width: 0%;
