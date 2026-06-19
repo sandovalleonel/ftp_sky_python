@@ -9,11 +9,14 @@ def get_ftp():
     ftp_host = request.headers.get('X-FTP-Host')
     ftp_user = request.headers.get('X-FTP-User')
     ftp_pass = request.headers.get('X-FTP-Pass', '')
+    protocol = request.headers.get('X-FTP-Protocol', 'ftp')
+    port_str = request.headers.get('X-FTP-Port')
+    port = int(port_str) if port_str and port_str.isdigit() else None
     
     if not ftp_host or not ftp_user:
-        raise Exception("Faltan credenciales FTP en la peticion.")
+        raise Exception("Faltan credenciales en la peticion.")
         
-    ftp = FTPManager(ftp_host, ftp_user, ftp_pass)
+    ftp = FTPManager(ftp_host, ftp_user, ftp_pass, protocol=protocol, port=port)
     ftp.connect()
     return ftp
 
@@ -25,7 +28,13 @@ def index():
 def connect_test():
     try:
         data = request.json
-        ftp = FTPManager(data.get('host'), data.get('user'), data.get('password', ''))
+        ftp = FTPManager(
+            data.get('host'), 
+            data.get('user'), 
+            data.get('password', ''),
+            protocol=data.get('protocol', 'ftp'),
+            port=data.get('port')
+        )
         ftp.connect()
         disks = ftp.list_disks()
         ftp.disconnect()
@@ -83,9 +92,12 @@ def api_download():
     host = request.args.get('host')
     user = request.args.get('user')
     password = request.args.get('pass', '')
+    protocol = request.args.get('protocol', 'ftp')
+    port_str = request.args.get('port')
+    port = int(port_str) if port_str and port_str.isdigit() else None
     
     try:
-        ftp = FTPManager(host, user, password)
+        ftp = FTPManager(host, user, password, protocol=protocol, port=port)
         ftp.connect()
         
         if is_dir:

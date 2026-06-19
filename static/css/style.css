@@ -93,15 +93,18 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
 .modal-content.large {
-  max-width: 80vw;
-  height: 80vh;
+  max-width: 96vw;
+  width: 96vw;
+  max-height: 96vh;
+  height: 96vh;
+  padding: 16px;
   display: flex;
   flex-direction: column;
 }
 .modal-content h2 { margin-bottom: 16px; font-size: 1.2rem; }
 .form-group { margin-bottom: 16px; }
 .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
-.form-group input { 
+.form-group input, .form-group select { 
   width: 100%; padding: 10px; 
   background: var(--bg-color); border: 1px solid var(--border); 
   color: var(--text-main); border-radius: 4px; 

@@ -5,6 +5,8 @@ class AppExplorer {
         this.host = '';
         this.user = '';
         this.pass = '';
+        this.protocol = 'ftp';
+        this.port = '21';
         this.currentPath = '';
         this.currentEditingFile = '';
         
@@ -20,6 +22,18 @@ class AppExplorer {
             e.preventDefault();
             this.connect();
         });
+
+        const protocolSelect = document.getElementById('ftp-protocol');
+        const portInput = document.getElementById('ftp-port');
+        if (protocolSelect && portInput) {
+            protocolSelect.addEventListener('change', () => {
+                if (protocolSelect.value === 'sftp') {
+                    portInput.value = '22';
+                } else {
+                    portInput.value = '21';
+                }
+            });
+        }
 
         // Prevent default browser behavior globally to stop files from opening in the window
         window.addEventListener('dragover', e => e.preventDefault());
@@ -113,6 +127,21 @@ class AppExplorer {
         const u = localStorage.getItem('ftpUser');
         if(h && u) {
             this.host = h; this.user = u; this.pass = localStorage.getItem('ftpPass') || '';
+            this.protocol = localStorage.getItem('ftpProtocol') || 'ftp';
+            this.port = localStorage.getItem('ftpPort') || '21';
+            
+            const hostInput = document.getElementById('ftp-host');
+            const userInput = document.getElementById('ftp-user');
+            const passInput = document.getElementById('ftp-pass');
+            const protocolSelect = document.getElementById('ftp-protocol');
+            const portInput = document.getElementById('ftp-port');
+            
+            if (hostInput) hostInput.value = this.host;
+            if (userInput) userInput.value = this.user;
+            if (passInput) passInput.value = this.pass;
+            if (protocolSelect) protocolSelect.value = this.protocol;
+            if (portInput) portInput.value = this.port;
+            
             document.getElementById('login-modal').classList.add('hidden');
             this.loadInitialDisks();
         }
@@ -170,6 +199,8 @@ class AppExplorer {
             'X-FTP-Host': this.host,
             'X-FTP-User': this.user,
             'X-FTP-Pass': this.pass,
+            'X-FTP-Protocol': this.protocol || 'ftp',
+            'X-FTP-Port': this.port || '',
             'Content-Type': 'application/json'
         };
         const options = { method, headers };
@@ -200,12 +231,22 @@ class AppExplorer {
         this.host = document.getElementById('ftp-host').value;
         this.user = document.getElementById('ftp-user').value;
         this.pass = document.getElementById('ftp-pass').value;
+        this.protocol = document.getElementById('ftp-protocol').value;
+        this.port = document.getElementById('ftp-port').value;
 
         try {
-            const data = await this.doApiCall('connect', {host: this.host, user: this.user, password: this.pass});
+            const data = await this.doApiCall('connect', {
+                host: this.host, 
+                user: this.user, 
+                password: this.pass,
+                protocol: this.protocol,
+                port: this.port
+            });
             localStorage.setItem('ftpHost', this.host);
             localStorage.setItem('ftpUser', this.user);
             localStorage.setItem('ftpPass', this.pass);
+            localStorage.setItem('ftpProtocol', this.protocol);
+            localStorage.setItem('ftpPort', this.port);
             
             document.getElementById('connection-status').innerText = `Conectado a ${this.user}@${this.host}`;
             document.getElementById('login-modal').classList.add('hidden');
@@ -224,11 +265,15 @@ class AppExplorer {
         localStorage.removeItem('ftpHost');
         localStorage.removeItem('ftpUser');
         localStorage.removeItem('ftpPass');
+        localStorage.removeItem('ftpProtocol');
+        localStorage.removeItem('ftpPort');
         this.expandedFolders.clear();
         this.saveExpandedState();
         this.host = '';
         this.user = '';
         this.pass = '';
+        this.protocol = 'ftp';
+        this.port = '21';
         this.currentPath = '';
         
         document.getElementById('connection-status').innerText = 'No conectado';
@@ -241,7 +286,13 @@ class AppExplorer {
 
     async loadInitialDisks() {
         try {
-            const data = await this.doApiCall('connect', {host: this.host, user: this.user, password: this.pass});
+            const data = await this.doApiCall('connect', {
+                host: this.host, 
+                user: this.user, 
+                password: this.pass,
+                protocol: this.protocol,
+                port: this.port
+            });
             document.getElementById('connection-status').innerText = `Conectado a ${this.user}@${this.host}`;
             this.renderTreeRoot(data.disks);
         } catch(e) {
@@ -418,7 +469,7 @@ class AppExplorer {
                 if (item.is_dir) {
                     tr.addEventListener('dblclick', () => this.loadFileList(item.path));
                 } else if(isEditable) {
-                    tr.addEventListener('dblclick', () => this.openViewer(item.path, item.name));
+                    tr.addEventListener('dblclick', () => this.openEditor(item.path, item.name));
                 }
                 
                 tbody.appendChild(tr);
@@ -452,7 +503,13 @@ class AppExplorer {
 
     async downloadWithProgress(path, isDir) {
         const qs = new URLSearchParams({
-            path, is_dir: isDir, host: this.host, user: this.user, pass: this.pass
+            path, 
+            is_dir: isDir, 
+            host: this.host, 
+            user: this.user, 
+            pass: this.pass,
+            protocol: this.protocol || 'ftp',
+            port: this.port || ''
         });
         const url = `/api/download?${qs.toString()}`;
         
@@ -773,6 +830,8 @@ class AppExplorer {
             xhr.setRequestHeader('X-FTP-Host', this.host);
             xhr.setRequestHeader('X-FTP-User', this.user);
             xhr.setRequestHeader('X-FTP-Pass', this.pass);
+            xhr.setRequestHeader('X-FTP-Protocol', this.protocol || 'ftp');
+            xhr.setRequestHeader('X-FTP-Port', this.port || '');
             
             xhr.upload.onprogress = (e) => {
                 if (e.lengthComputable) {

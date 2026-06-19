@@ -61,6 +61,19 @@
         <div class="modal-content">
             <h2>Conectar a Servidor Toshiba</h2>
             <form id="login-form">
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Protocolo</label>
+                        <select id="ftp-protocol">
+                            <option value="ftp">FTP</option>
+                            <option value="sftp">SFTP</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Puerto</label>
+                        <input type="number" id="ftp-port" value="21" required>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>IP del Servidor (Host)</label>
                     <input type="text" id="ftp-host" required value="192.168.0.100">
